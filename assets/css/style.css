@@ -1,0 +1,21 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Actor&family=Salsa&display=swap')
+
+/* Asterisk wildcard selector to override default styles added by the browser */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* General styles */
+
+body {
+    height: 600px;
+    width: 100%;
+    background: url("../images/mushroom-bg.webp") no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    color: #3a3a3a;
+    font-family: 'Actor', sans-serif;
+}
