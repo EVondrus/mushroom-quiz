@@ -1,63 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Salsa&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- favicon -->
-    <title>Mushroom Quiz</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SEO -->
+  <meta name="description" content="Test your knowledge of mushrooms with this fun and educational quiz game. Learn about different types of mushrooms, their features, and more.">
+  <meta name="keywords" content="mushroom quiz, mushroom, cultivation, mushroom types, quiz game, educational game">
+  <meta name="author" content="Ellenor Olofsson Vondrus">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Actor&family=Salsa&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Mushroom Quiz</title>
 </head>
 
 <body>
-    <!-- Header -->
+  <!-- HEADING -->
+
+  <div class="title-container">
+    <h1 class="title">Mushroom Quiz</h1>
+  </div>
+
+  <!-- START QUIZ BUTTON -->
+  <div class="start-page">
+  <div class="start-btn"><button>Start Quiz</button></div>
+  <div class="leaderboard-btn"><button>Leaderboard</button></div>
+    
+
+  <form id="username-box">
+    <div class="username-title">
+    <p>Join the fun! <br>Create a username and compete on our Leaderboard!</p>
+    </div>
+    <input type="text" name="name" placeholder="Enter Username" id="username-input">
+        <button type="submit" name="submit" value="submit" id="submit-btn">Lets Go!</button>
+  </form>
+</div>
+
+  <!-- INFO BOX -->
+
+  <div class="info-box">
+
+    <div class="info-title"><span>Rules of the Game</span></div>
+    <!-- List containing the rules -->
+    <div class="info-list">
+      <div class="info"><span class="info-num">1.</span> <span>10 seconds</span> is all the time you've got to answer,
+        per each question.</div>
+      <div class="info"><span class="info-num">2.</span> Once the clock runs out, you can't make any changes.
+        <br><span>Choose wisely!</span>
+      </div>
+      <div class="info"><span class="info-num">3.</span> Once you've selected your answer, <span>there's no going
+          back.</span></div>
+      <div class="info"><span class="info-num">4.</span> No escape routes here! You can <span>not exit</span> from the
+        Quiz while you're playing.</div>
+      <div class="info"><span class="info-num">5.</span> Score big by nailing those correct answers! - <span>Let the
+          game begin!</span></div>
+    </div>
+    <!-- Buttons for exiting or continuing the game -->
+    <div class="buttons">
+      <button class="quit-btn">Exit</button>
+      <button class="restart-btn">Continue</button>
+    </div>
+  </div>
+
+  <!-- QUIZ BOX -->
+
+  <div class="quiz-box">
+    <!-- Header for Currect Question and Timer-->
     <header>
-        <h1 class="heading">Mushroom Quiz</h1>
+      <div class="question-count">
+        Question <span id="current-question">0</span>/<span id="total-question">10</span>
+      </div>
+      <div class="timer">
+        <!-- Displaying Timer from JS-->
+        <div class="time-text">Time</div>
+        <div class="timer-sec">15</div>
+      </div>
+      <!-- Animated Time Line from JS-->
+      <div class="time-line"></div>
     </header>
+    <!-- Section for Question and Options -->
+    <section>
+      <div class="quiz-container">
+        <!-- Display the question from JS -->
+        <h2 id="question">Question displayed here</h2>
+          <div class="answer-options">
+            <!-- Display answer options from JS -->
+            <button class="answer-btn">Answer 1</button>
+            <button class="answer-btn">Answer 2</button>
+            <button class="answer-btn">Answer 3</button>
+            <button class="answer-btn">Answer 4</button>
+          </div>
+      </div>
+    </section>
+    <!-- Footer for currect Score -->
+    <footer>
+      <div class="current-score">
+        <!-- Display current Score from JS-->
+        <p class="scores">Correct<span id="correct-score">0</span>
+          <p class="scores">Incorrect<span id="incorrect-score">0</span>
+      </div>
+    </footer>
+  </div>
 
-    <main>
-        <!-- Info Box -->
-        <div class="info-box">
-            <div class="info-title"></div>
-            <span>Rules for this Quiz</span>
-            <div class="info-list">
-                <div class="info">1.</div>
-                <div class="info">2.</div>
-                <div class="info">3.</div>
-                <div class="info">4.</div>
-                <div class="info">5.</div>
-            </div>
-            <!-- Start Quiz Button -->
-            <button class="start-btn">Start Quiz</button>
-        </div>
+  <!-- RESULT BOX -->
 
-
-        <!-- Game-area section -->
-        <div class="game-container">
-            <div class="timer-area">
-
-            </div>
-            <div class="question-area" id="question">Question here!</div>
-            <div id="answer-btn-area">
-                <button class="answer-btn">A.</button>
-                <button class="answer-btn">B.</button>
-                <button class="answer-btn">C.</button>
-                <button class="answer-btn">D.</button>
-            </div>
-            <button class="next-question-btn" id="next-btn">Next</button>
-
-            <!-- Score Area -->
-            <div class="score-area">
-                <p class="scores">Correct Answers <span id="score">0</span></p>
-                <p class="scores">Incorrect Answers <span id="incorrect">0</span></p>
-            </div>
-        </div>
-
-        <script src="assets/js/script.js"></script>
+  <div class="result-box">
+    <div class="result-inner-box">
+      <div class="result-img">
+        <img src="assets/images/mushroom-icon.png" alt="A big smiling mushroom companioned by two small mushrooms">
+      </div>
+      <!-- Title for result -->
+      <div class="result-title">Congrats! <br>You did it!</div>
+      <div class="final-score">
+        <!-- Display final score from JS-->
+      </div>
+      <!-- Buttons for restarting or quitting -->
+      <div class="buttons">
+        <button class="restart-btn">Play Again</button>
+        <button class="quit-btn">Quit Quiz</button>
+      </div>
+    </div>
+  </div>
+  <!-- Javascript Files-->
+  <script src="assets/js/script.js"defer></script>
 </body>
 
 </html>

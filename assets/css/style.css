@@ -1,21 +1,567 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Actor&family=Salsa&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Actor&family=Salsa&display=swap');
 
-/* Asterisk wildcard selector to override default styles added by the browser */
+/* Reset default styles added by the browser */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Actor', sans-serif;
+    /* Set default font family */
 }
 
-/* General styles */
-
+/* Background image and General styles */
 body {
-    height: 600px;
+    height: 100vh;
     width: 100%;
-    background: url("../images/mushroom-bg.webp") no-repeat center center/cover;
+    background: url("../images/bg-img.webp") no-repeat center center/cover;
     display: flex;
     flex-direction: column;
+    text-align: center;
     color: #3a3a3a;
     font-family: 'Actor', sans-serif;
+}
+
+::selection {
+    /* Highlights the part of the document that has been clicked and dragged by the user */
+    color: #faebd7;
+    background-color: #82820F;
+
+}
+
+/* HEADING */
+.title-container {
+    margin: 60px 5%;
+    padding: 15px;
+    background-color: #faebd7;
+    border-style: solid;
+    box-shadow: 0 5px 10px rgba(59, 59, 59, 0.8);
+    max-width: 100%;
+}
+
+h1 {
+    font-family: "Salsa", sans-serif;
+    font-size: 2.5rem;
+    color: #82820F;
+    padding: 5px 0;
+    margin: 0;
+}
+
+/* Positioning all the boxes Absolute, in the center of the page */
+.start-page,
+.info-box,
+.quiz-box,
+.result-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgb(58, 58, 58, 0.8);
+
+}
+
+/* Being able to control the boxes appearance and behavior transitions with JS 
+by adding an active class*/
+.info-box.activeInfo,
+.quiz-box.activeQuiz,
+.result-box.activeResult {
+    opacity: 1;
+    /* Make the elements visible */
+    z-index: 5;
+    /* Keeping the elements on top of the other elements */
+    pointer-events: auto;
+    /* Make the elements clickable */
+    transform: translate(-50%, -50%) scale(1);
+    /* Keep elements appearing in the center of the page */
+}
+
+.start-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: none;
+    top: 60%;
+}
+
+/* START BUTTON */
+.start-btn button,
+.leaderboard-btn button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #faebd7;
+    background: #82820F;
+    margin-bottom: 10px;
+    padding: 15px 30px;
+    border: 2px solid #3a3a3a;
+    border-radius: 5px;
+    outline: none;
+    /* Remove the default focus style */
+    cursor: pointer;
+    /* Set cursor to pointer for better user interaction feedback */
+}
+
+.leaderboard-btn button {
+    background-color: #FF5A4E;
+    color: #3a3a3a;
+    padding: 15px 20px;
+}
+
+#username-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#username-title {
+    width: 100%;
+}
+
+#username-box p {
+    font-family: "salsa";
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: #FF5A4E;
+    margin: 10px auto; /* Center the paragraph horizontally */
+    padding: 25px 10px; 
+    border: 2px solid #3a3a3a;
+}
+
+#username-input {
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: #faebd7;
+    height: 55px;
+    padding: 20px;
+    border: 2px solid #3a3a3a;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#submit-btn {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #faebd7;
+    background: #82820F;
+    margin: 0 25px;
+    padding: 10px 30px;
+    border: 2px solid #3a3a3a;
+    border-radius: 5px;
+    outline: none;
+    /* Remove the default focus style */
+    cursor: pointer;
+
+}
+
+
+/* INFO BOX */
+.info-box {
+    width: 90%;
+    max-width: 600px;
+    background: #faebd7;
+    opacity: 0;
+    transition: all 0.3s ease;
+    /* To make the transition smooth */
+    pointer-events: none;
+    /* Make the elements unclickable */
+    transform: translate(-50%, -50%) scale(0.9);
+    /* Giving the element a slightly smaller size than its original dimensions for visual effects */
+}
+
+/* Title styles of Info Box */
+.info-box .info-title {
+    height: 60px;
+    width: 100%;
+    border-bottom: 2px solid #3a3a3a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    border-radius: 5px 5px 0 0;
+    /* Keep the rounded corner effect */
+    box-shadow: 0 0 5px 5px rgba(58, 58, 58, 0.2);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.info-box .info-title span {
+    font-family: "Salsa", sans-serif;
+}
+
+/* Styles for the info text */
+.info-box .info-list {
+    padding: 15px 20px;
+    line-height: 1.3;
+    /* Increase readability */
+    text-align: left;
+    font-size: 1.1rem
+}
+
+.info-box .info {
+    margin-bottom: 5px;
+    /* Increase readability between rules divs*/
+}
+
+.info-box .info-list .info-num {
+    font-size: 1.4rem;
+    color: #3a3a3a;
+}
+
+/* Highlight the important info in the text */
+.info-box .info-list span {
+    font-weight: 600;
+    color: #82820F;
+}
+
+/* Styles for Exit and Continue Buttons */
+.info-box .buttons {
+    height: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 30px;
+    border-top: 2px solid #3a3a3a;
+    box-shadow: 0 0 5px 5px rgba(58, 58, 58, 0.2);
+
+
+}
+
+.info-box .buttons button {
+    font-family: "Salsa", sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #faebd7;
+    background: #82820F;
+    padding: 15px 20px;
+    border: 2px solid #3a3a3a;
+    border-radius: 5px;
+    outline: none;
+    /* Remove the default focus style */
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+.info-box .buttons .quit-btn {
+    padding: 15px 40px;
+    margin-right: 15px;
+}
+
+/* QUIZ BOX */
+
+.quiz-box {
+    width: 80%;
+    max-width: 700px;
+    top: 55%;
+    background: #faebd7;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    /* Make the elements unclickable */
+    transform: translate(-50%, -40%) scale(0.9);
+    box-shadow: 0 0 5px 5px rgb(58, 58, 58);
+    /* Gives a 3D effect behind the container*/
+}
+
+/* Header in the Quiz box */
+.quiz-box header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    border-radius: 5px 5px 0 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    position: relative;
+    /* Position the timer */
+    z-index: 2;
+    /* Keeping the element on top of the other elements */
+    box-shadow: 0 3px 5px 1px rgba(58, 58, 58, 0.3);
+
+}
+
+/* Question Counter */
+.quiz-box header .question-count {
+    font-family: "Salsa", sans-serif;
+    font-size: 1.2rem;
+}
+
+.quiz-box header .question-count span {
+    font-family: "Salsa", sans-serif;
+    font-size: 1.2rem;
+}
+
+/* Timer box */
+.quiz-box header .timer {
+    width: 145px;
+    /* Set a fixed width for the timer */
+    margin-left: auto;
+    /* Auto margin to push the timer to the right */
+    padding: 5px 10px;
+    border: 2px solid #3a3a3a;
+    border-radius: 5px;
+    background: #82820F;
+    color: #faebd7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Timer text */
+.quiz-box header .timer .time-text {
+    font-family: "Salsa", sans-serif;
+    font-size: 1.2rem;
+    user-select: none;
+    /* Prevent the user from selecting the text */
+    white-space: nowrap;
+    /* Prevent text from wrapping to the next line */
+}
+
+/* Timer Number */
+.quiz-box header .timer .timer-sec {
+    font-family: "Salsa", sans-serif;
+    font-size: 1.4rem;
+    width: 40px;
+    height: 35px;
+    border-radius: 5px;
+    border: 2px solid #3a3a3a;
+    text-align: center;
+    user-select: none;
+    /* Prevent the user from selecting the numbers*/
+}
+
+/* Timer Line - Animation in JS*/
+.quiz-box .time-line {
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    /* Position the line Absolute, at the bottom of header*/
+    bottom: 0;
+    left: 0;
+    background: #3a3a3a;
+}
+
+/* Main Section in the Quiz Box, Question and Answers */
+section {
+    padding: 25px 30px 20px 30px;
+
+}
+
+/* Question */
+section .quiz-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-align: left;
+
+}
+
+/* Answers */
+section .answer-options .answer-btn {
+    background-color: #faebd7;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 1.1rem;
+    text-align: left;
+    padding: 10px;
+    border: 2px solid #3a3a3a;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+/* Removes hover effect whenever user clicked on an answer */
+section .answer-options .answer-btn:hover:not([disabled]) {
+    background: olive;
+    color: #faebd7;
+}
+
+
+/* Styles for correct and incorrect answers */
+section .answer-options .answer-btn.correct {
+    background: #60A561;
+    color: #faebd7;
+    border: 1px solid #faebd7;
+}
+
+section .answer-options .answer-btn.incorrect {
+    background: #FF5A4E;
+    color: #faebd7;
+    border: 1px solid #faebd7;
+}
+
+section .answer-options .answer-btn.disabled {
+    pointer-events: none;
+    /* It will not possible to click other buttons */
+}
+
+/* Footer of Quiz box */
+footer {
+    height: 60px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #3a3a3a;
+    box-shadow: 0 0 5px 5px rgba(58, 58, 58, 0.2);
+}
+
+/* Styling for the current score */
+footer .current-score {
+    margin-left: 10px;
+}
+
+footer .current-score p {
+    font-family: "salsa", sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    /* Not selectable */
+}
+
+footer .current-score span {
+    font-family: "salas", sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+/* RESULT BOX */
+
+.result-box {
+    top: 55%;
+    width: 85%;
+    max-width: 600px;
+    background: #faebd7;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%) scale(0.9);
+    box-shadow: 0 0 5px 5px rgba(58, 58, 58, 0.5);
+}
+
+/* Image */
+.result-box img {
+    width: 125px;
+    height: 125px;
+    margin: 20px 0;
+}
+
+/* Title */
+.result-box .result-title {
+    font-size: 2rem;
+    font-family: "Salsa", sans-serif;
+    font-weight: bold;
+    color: olive;
+    margin-bottom: 20px;
+}
+
+/* Styling for the score inside the result box */
+.result-box .final-score span {
+    font-family: "Salsa", sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result-box .final-score span div {
+    font-family: "Salsa", sans-serif;
+    font-size: 1.3rem;
+    padding: 0 5px;
+    margin: 10px 0;
+    /* Adding some margin between the lines */
+}
+
+/* Result Box Buttons */
+.result-box .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.result-box .buttons button {
+    font-family: "Salsa", sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #faebd7;
+    background: olive;
+    margin: 0 10px;
+    padding: 15px 20px;
+    border: 2px solid #3a3a3a;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.buttons button.quit-btn {
+    background: #FF5A4E;
+    padding: 0 25px;
+}
+
+.buttons button.quit-btn:hover {
+    background: #faebd7;
+    color: #FF5A4E;
+}
+
+.buttons button.restart-btn:hover {
+    background: #faebd7;
+    color: olive;
+}
+
+/* Keyframe animation for a shaking effect
+*  Credit: Dane Parchment - https://teamtreehouse.com/community/shake-effect-with-javascript-only
+*/
+@keyframes shake {
+
+    /* At 10% and 90% of the animation duration, translate the element to the left by 1px */
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    /* At 20% and 80%, translate the element to the right by 2px */
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    /* At 30%, 50%, and 70%, translate the element to the left by 4px */
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    /* At 40% and 60%, translate the element to the right by 4px */
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+
+.apply-shake {
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+
+
+@media screen and (max-width: 365px) {
+    .title-container {
+        display: none;
+        /* Hide the title container */
+    }
 }
