@@ -12,6 +12,8 @@ const answerOptions = document.querySelector(".answer-options");
 const resultBox = document.querySelector(".result-box");
 const restartBtn = resultBox.querySelector(".buttons .restart-btn");
 const quitBtn = resultBox.querySelector(".buttons .quit-btn");
+const input = document.querySelector("input#username-input");
+const submit = document.querySelector("button#submit-btn");
 
 // Variables for quiz state
 let time = 10; // Initial time for each question
@@ -21,8 +23,9 @@ let currentQuestionIndex = 0; // Index of the current question
 let correctScore = 0; // Number of correctly answered questions
 let incorrectScore = 0; // Number of incorrectly answered questions
 
-// START BUTTON
+// START PAGE
 
+// START BUTTON
 // Event handler for the start button click
 startBtn.onclick = () => {
   try {
@@ -32,6 +35,23 @@ startBtn.onclick = () => {
     alert("Oops! Gremlins invaded the Mushroom Quiz machinery. Try again later!");
   }
 };
+
+//LEADERBOARD BUTTON
+
+// USERNAME INPUT
+// Eventlistener for when input field is empty
+
+submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    if(input.value === "") {
+        input.classList.add("apply-shake");
+    }
+});
+
+input.addEventListener("animationend", (e) => {
+    input.classList.remove("apply-shake");
+});
+
 
 //INFO BOX
 
