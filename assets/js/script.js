@@ -13,7 +13,7 @@ const resultBox = document.querySelector(".result-box");
 const restartBtn = resultBox.querySelector(".buttons .restart-btn");
 const quitBtn = resultBox.querySelector(".buttons .quit-btn");
 const input = document.querySelector("input#username-input");
-const submit = document.querySelector("button#submit-btn");
+const submitBtn = document.querySelector("button#submit-btn");
 
 // Variables for quiz state
 let time = 10; // Initial time for each question
@@ -40,8 +40,7 @@ startBtn.onclick = () => {
 
 // USERNAME INPUT
 // Eventlistener for when input field is empty
-
-submit.addEventListener("click", (e) => {
+submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
     if(input.value === "") {
         input.classList.add("apply-shake");
@@ -51,6 +50,12 @@ submit.addEventListener("click", (e) => {
 input.addEventListener("animationend", (e) => {
     input.classList.remove("apply-shake");
 });
+
+// Eventlistener for when submitting username
+function returnText(){
+    let input = document.getElementById("username-input").value;
+    alert(input)
+}
 
 
 //INFO BOX
